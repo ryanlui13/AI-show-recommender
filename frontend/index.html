@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Wizard of the Show'nanigans</title>
+        <link rel="stylesheet" href="index.css">
+        <script src="quizAnswers.js" defer></script>
+    </head>
+
+    <body>
+        <header>
+            <h1>Welcome to the Wizard of the Show'nanigans!</h1>
+            <button id="signIn">Sign In</button>
+            <button id="createAccount">Create an account!</button>
+        </header>
+        
+        <hr>
+        <section>
+            <h2>Your profile awaits...</h2>
+
+            <div id="profile" class="profile">
+                <h4>Username</h4>
+                <p id="profile-username">Name goes here...</p>
+
+                <h4>Age</h4>
+                <p id="profile-age">Enter your age...</p>
+
+                <h4>Genres:</h4>
+                <table>
+                    <tr>
+                        <th>Love</th>
+                        <th>Like</th>
+                        <th>Hate</th>
+                    </tr>
+                    <tr>
+                        <td id="profile-love-genres">-</td>
+                        <td id="profile-like-genres">-</td>
+                        <td id="profile-hate-genres">-</td>
+                    </tr>
+                </table>
+
+                <h4> Previous shows: </h4>
+                <table>
+                    <tr>
+                        <th>Previous Loved shows</th>
+                        <th>Previous Liked shows</th>
+                    </tr>
+                    <tr>
+                        <td id="profile-loved-shows"> - </td>
+                        <td id="profile-liked-shows"> - </td>
+                    </tr>
+                </table>
+
+            </div>
+        </section>
+        
+        <!-- Genre tab-->
+        <section>
+            <h2>Genre abilities...</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ranking</th>
+                        <th>Show</th>
+                        <th>Genres</th>
+                        <th>RATING</th>
+                    </tr>
+                </thead>
+                <tbody id="genre-recommendations">
+                
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Casting abilities...</h2>
+            <table>
+                <thead>
+                    <th>Ranking</th>
+                    <th>Show</th>
+                    <th>Genres</th>
+                    <th>RATING</th>
+                </thead>
+                <tbody id="cast-recommendations">
+                    
+                </tbody>
+            </table>
+
+        </section>
+
+        <!-- Quiz -->
+        <div id="quiz" class="hidden-modal">
+            <div class="quiz-box">
+                <h2>🧙‍♂️ Harry Potter is creating your show'nanigans profile. But first, he needs these spell ingredients...</h2>
+                <p> Please give us the following ingredients to come up w/ the best spells...</p>
+
+                <form id="quiz-form">
+                    <label for="username-input"> Username: </label>
+                    <input type="text" id="user-name-input" required placeholder="Your Name...">
+
+                    <br><br>
+                    <label for="age-input">Age: </label>
+                    <input type="number" id="user-age-input" required min="1" max="100">
+
+                    <br><br>
+                    
+                    <div id="fav-genres">
+                        <br><br>
+                        <h3>Selected Genres</h3>
+                        <div class="genre-matrix">
+                            <div class="genre-row">
+                                <span class="genre-name">Action</span>
+                                <label><input type="checkbox" name="Action" value="love"> Love</label>
+                                <label><input type="checkbox" name="Action" value="like"> Like</label>
+                                <label><input type="checkbox" name="Action" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Adult</span>
+                                <label><input type="checkbox" name="Adult" value="love"> Love</label>
+                                <label><input type="checkbox" name="Adult" value="like"> Like</label>
+                                <label><input type="checkbox" name="Adult" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Animation</span>
+                                <label><input type="checkbox" name="Animation" value="love"> Love</label>
+                                <label><input type="checkbox" name="Animation" value="like"> Like</label>
+                                <label><input type="checkbox" name="Animation" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Biography</span>
+                                <label><input type="checkbox" name="Biography" value="love"> Love</label>
+                                <label><input type="checkbox" name="Biography" value="like"> Like</label>
+                                <label><input type="checkbox" name="Biography" value="hate"> Hate</label>
+                            </div>
+
+                            <!-- Comedy Genre Row -->
+                            <div class="genre-row">
+                                <span class="genre-name">Comedy</span>
+                                <label><input type="checkbox" name="Comedy" value="love"> Love</label>
+                                <label><input type="checkbox" name="Comedy" value="like"> Like</label>
+                                <label><input type="checkbox" name="Comedy" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Crime</span>
+                                <label><input type="checkbox" name="Crime" value="love"> Love</label>
+                                <label><input type="checkbox" name="Crime" value="like"> Like</label>
+                                <label><input type="checkbox" name="Create" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Documentary</span>
+                                <label><input type="checkbox" name="Documentary" value="love"> Love</label>
+                                <label><input type="checkbox" name="Documentary" value="like"> Like</label>
+                                <label><input type="checkbox" name="Documentary" value="hate"> Hate</label>
+                            </div>
+
+                            <!-- Sci-Fi Genre Row -->
+                            <div class="genre-row">
+                                <span class="genre-name">Sci-Fi</span>
+                                <label><input type="checkbox" name="Sci-Fi" value="love"> Love</label>
+                                <label><input type="checkbox" name="Sci-Fi" value="like"> Like</label>
+                                <label><input type="checkbox" name="Sci-Fi" value="hate"> Hate</label>
+                            </div>
+
+                            <!-- Drama Genre Row -->
+                            <div class="genre-row">
+                                <span class="genre-name">Drama</span>
+                                <label><input type="checkbox" name="Drama" value="love"> Love</label>
+                                <label><input type="checkbox" name="Drama" value="like"> Like</label>
+                                <label><input type="checkbox" name="Drama" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Family</span>
+                                <label><input type="checkbox" name="Family" value="love"> Love</label>
+                                <label><input type="checkbox" name="Family" value="like"> Like</label>
+                                <label><input type="checkbox" name="Family" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Fantasy</span>
+                                <label><input type="checkbox" name="Fantasy" value="love"> Love</label>
+                                <label><input type="checkbox" name="Fantasy" value="like"> Like</label>
+                                <label><input type="checkbox" name="Fantasy" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Film-Noir</span>
+                                <label><input type="checkbox" name="Film-Noir" value="love"> Love</label>
+                                <label><input type="checkbox" name="Film-Noir" value="like"> Like</label>
+                                <label><input type="checkbox" name="Film-Noir" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Game-Show</span>
+                                <label><input type="checkbox" name="Game-Show" value="love"> Love</label>
+                                <label><input type="checkbox" name="Game-Show" value="like"> Like</label>
+                                <label><input type="checkbox" name="Game-Show" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">History</span>
+                                <label><input type="checkbox" name="History" value="love"> Love</label>
+                                <label><input type="checkbox" name="History" value="like"> Like</label>
+                                <label><input type="checkbox" name="History" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Music</span>
+                                <label><input type="checkbox" name="Music" value="love"> Love</label>
+                                <label><input type="checkbox" name="Music" value="like"> Like</label>
+                                <label><input type="checkbox" name="Music" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Musical</span>
+                                <label><input type="checkbox" name="Musical" value="love"> Love</label>
+                                <label><input type="checkbox" name="Musical" value="like"> Like</label>
+                                <label><input type="checkbox" name="Musical" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Mystery</span>
+                                <label><input type="checkbox" name="Mystery" value="love"> Love</label>
+                                <label><input type="checkbox" name="Mystery" value="like"> Like</label>
+                                <label><input type="checkbox" name="Mystery" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">News</span>
+                                <label><input type="checkbox" name="News" value="love"> Love</label>
+                                <label><input type="checkbox" name="News" value="like"> Like</label>
+                                <label><input type="checkbox" name="News" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Reality-TV</span>
+                                <label><input type="checkbox" name="Reality-TV" value="love"> Love</label>
+                                <label><input type="checkbox" name="Reality-TV" value="like"> Like</label>
+                                <label><input type="checkbox" name="Reality-TV" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Short</span>
+                                <label><input type="checkbox" name="Short" value="love"> Love</label>
+                                <label><input type="checkbox" name="Short" value="like"> Like</label>
+                                <label><input type="checkbox" name="Short" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Talk-Show</span>
+                                <label><input type="checkbox" name="Talk-Show" value="love"> Love</label>
+                                <label><input type="checkbox" name="Talk-Show" value="like"> Like</label>
+                                <label><input type="checkbox" name="Talk-Show" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">War</span>
+                                <label><input type="checkbox" name="War" value="love"> Love</label>
+                                <label><input type="checkbox" name="War" value="like"> Like</label>
+                                <label><input type="checkbox" name="War" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Western</span>
+                                <label><input type="checkbox" name="Western" value="love"> Love</label>
+                                <label><input type="checkbox" name="Western" value="like"> Like</label>
+                                <label><input type="checkbox" name="Western" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Adventure</span>
+                                <label><input type="checkbox" name="Adventure" value="love"> Love</label>
+                                <label><input type="checkbox" name="Adventure" value="like"> Like</label>
+                                <label><input type="checkbox" name="Adventure" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Romance</span>
+                                <label><input type="checkbox" name="Romance" value="love"> Love</label>
+                                <label><input type="checkbox" name="Romance" value="like"> Like</label>
+                                <label><input type="checkbox" name="Romance" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Horror</span>
+                                <label><input type="checkbox" name="Horror" value="love"> Love</label>
+                                <label><input type="checkbox" name="Horror" value="like"> Like</label>
+                                <label><input type="checkbox" name="Horror" value="hate"> Hate</label>
+                            </div>
+
+                            <div class="genre-row">
+                                <span class="genre-name">Thriller</span>
+                                <label><input type="checkbox" name="Thriller" value="love"> Love</label>
+                                <label><input type="checkbox" name="Thriller" value="like"> Like</label>
+                                <label><input type="checkbox" name="Thriller" value="hate"> Hate</label>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <!-- cast-->
+                    <label for="fav-cast">Enter your favorite cast members:</label>
+                    <input type="text" id="fav-cast" placeholder="e.g. Pedro Pascal, Jenna Ortega, Cillian Murphy">
+
+                    <!-- prev love shows-->
+                    <label for="previous-shows"> Enter previous shows you loved. Separate each show with a comma: </label>
+                    <input type="text" id="previous-love-shows" placeholder="The Boys, Family Guy">   
+
+                    <br><br>
+
+                    <!-- prev like shows-->
+                    <label for="previous-shows"> Enter previous shows you liked. Separate each show with a comma: </label>
+                    <input type="text" id="previous-like-shows" placeholder="The Boys, Family Guy">   
+                
+                    <br><br>
+
+                    <button type="button" id="submit-quiz-btn">Let's Go!</button>
+                    <button type="button" id="close-quiz-btn">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

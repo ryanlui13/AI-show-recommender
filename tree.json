@@ -1,0 +1,302 @@
+{
+    "node_type": "split",
+    "node_id": 0,
+    "split_feature": "has_genre",
+    "split_threshold": 1.5,
+    "if_greater": {
+        "node_type": "split",
+        "node_id": 1,
+        "split_feature": "multiple_genres",
+        "split_threshold": 0.5,
+        "if_greater": {
+            "node_type": "split",
+            "node_id": 2,
+            "split_feature": "averageRating",
+            "split_threshold": 6.99,
+            "if_greater": {
+                "node_type": "split",
+                "node_id": 3,
+                "split_feature": "numVotes",
+                "split_threshold": 5000,
+                "if_greater": {
+                    "node_type": "split",
+                    "node_id": 31,
+                    "split_feature": "cast_count",
+                    "split_threshold": 1.5,
+                    "if_greater": {
+                        "node_type": "leaf",
+                        "node_id": 4,
+                        "prediction": "love"
+                    },
+                    "if_less_or_equal": {
+                        "node_type": "leaf",
+                        "node_id": 5,
+                        "prediction": "love"
+                    }
+                },
+                "if_less_or_equal": {
+                    "node_type": "split",
+                    "node_id": 6,
+                    "split_feature": "cast_count",
+                    "split_threshold": 1.5,
+                    "if_greater": {
+                        "node_type": "leaf",
+                        "node_id": 7,
+                        "prediction": "like"
+                    },
+                    "if_less_or_equal": {
+                        "node_type": "leaf",
+                        "node_id": 8,
+                        "prediction": "like"
+                    }
+                }
+            },
+            "if_less_or_equal": {
+                "node_type": "split",
+                "node_id": 9,
+                "split_feature": "averageRating",
+                "split_threshold": 7.0,
+                "if_greater": {
+                    "node_type": "split",
+                    "node_id": 10,
+                    "split_feature": "numVotes",
+                    "split_threshold": 5000,
+                    "if_greater": {
+                        "node_type": "split",
+                        "node_id": 11,
+                        "split_feature": "cast_count",
+                        "split_threshold": 1.5,
+                        "if_greater": {
+                            "node_type": "leaf",
+                            "node_id": 12,
+                            "prediction": "like"
+                        },
+                        "if_less_or_equal": {
+                            "node_type": "leaf",
+                            "node_id": 13,
+                            "prediction": "like"
+                        }
+                    },
+                    "if_less_or_equal": {
+                        "node_type": "split",
+                        "node_id": 14,
+                        "split_feature": "cast_count",
+                        "split_threshold": 1.5,
+                        "if_greater": {
+                            "node_type": "leaf",
+                            "node_id": 15,
+                            "prediction": "like"
+                        },
+                        "if_less_or_equal": {
+                            "node_type": "leaf",
+                            "node_id": 16,
+                            "prediction": "like"
+                        }
+                    }
+                },
+                "if_less_or_equal": {
+                    "node_type": "split",
+                    "node_id": 17,
+                    "split_feature": "numVotes",
+                    "split_threshold": 5000,
+                    "if_greater": {
+                        "node_type": "split",
+                        "node_id": 18,
+                        "split_feature": "cast_count",
+                        "split_threshold": 1.5,
+                        "if_greater": {
+                            "node_type": "leaf",
+                            "node_id": 19,
+                            "prediction": "like"
+                        },
+                        "if_less_or_equal": {
+                            "node_type": "leaf",
+                            "node_id": 20,
+                            "prediction": "like"
+                        }
+                    },
+                    "if_less_or_equal": {
+                        "node_type": "split",
+                        "node_id": 21,
+                        "split_feature": "cast_count",
+                        "split_threshold": 1.5,
+                        "if_greater": {
+                            "node_type": "leaf",
+                            "node_id": 22,
+                            "prediction": "like"
+                        },
+                        "if_less_or_equal": {
+                            "node_type": "leaf",
+                            "node_id": 23,
+                            "prediction": "like"
+                        }
+                    }
+                }
+            }
+        },
+        "if_less_or_equal": {
+            "node_type": "split",
+            "node_id": 24,
+            "split_feature": "averageRating",
+            "split_threshold": 7.0,
+            "if_greater": {
+                "node_type": "split",
+                "node_id": 25,
+                "split_feature": "numVotes",
+                "split_threshold": 5000,
+                "if_greater": {
+                    "node_type": "split",
+                    "node_id": 26,
+                    "split_feature": "cast_count",
+                    "split_threshold": 1.5,
+                    "if_greater": {
+                        "node_type": "leaf",
+                        "node_id": 27,
+                        "prediction": "like"
+                    },
+                    "if_less_or_equal": {
+                        "node_type": "leaf",
+                        "node_id": 28,
+                        "prediction": "ok"
+                    }
+                },
+                "if_less_or_equal": {
+                    "node_type": "split",
+                    "node_id": 29,
+                    "split_feature": "cast_count",
+                    "split_threshold": 1.5,
+                    "if_greater": {
+                        "node_type": "leaf",
+                        "node_id": 30,
+                        "prediction": "ok"
+                    },
+                    "if_less_or_equal": {
+                        "node_type": "leaf",
+                        "node_id": 31,
+                        "prediction": "ok"
+                    }
+                }
+            },
+            "if_less_or_equal": {
+                "node_type": "split",
+                "node_id": 32,
+                "split_feature": "numVotes",
+                "split_threshold": 5000,
+                "if_greater": {
+                    "node_type": "split",
+                    "node_id": 33,
+                    "split_feature": "cast_count",
+                    "split_threshold": 1.5,
+                    "if_greater": {
+                        "node_type": "leaf",
+                        "node_id": 34,
+                        "prediction": "ok"
+                    },
+                    "if_less_or_equal": {
+                        "node_type": "leaf",
+                        "node_id": 35,
+                        "prediction": "ok"
+                    }
+                },
+                "if_less_or_equal": {
+                    "node_type": "split",
+                    "node_id": 36,
+                    "split_feature": "cast_count",
+                    "split_threshold": 1.5,
+                    "if_greater": {
+                        "node_type": "leaf",
+                        "node_id": 37,
+                        "prediction": "dislike"
+                    },
+                    "if_less_or_equal": {
+                        "node_type": "leaf",
+                        "node_id": 38,
+                        "prediction": "dislike"
+                    }
+                }
+            }
+        }
+    },
+    "if_less_or_equal": {
+        "node_type": "split",
+        "node_id": 39,
+        "split_feature": "averageRating",
+        "split_threshold": 6.99,
+        "if_greater": {
+            "node_type": "split",
+            "node_id": 40,
+            "split_feature": "numVotes",
+            "split_threshold": 5000,
+            "if_greater": {
+                "node_type": "split",
+                "node_id": 401,
+                "split_feature": "cast_count",
+                "split_threshold": 1.5,
+                "if_greater": {
+                    "node_type": "leaf",
+                    "node_id": 41,
+                    "prediction": "ok"
+                },
+                "if_less_or_equal": {
+                    "node_type": "leaf",
+                    "node_id": 42,
+                    "prediction": "ok"
+                }
+            },
+            "if_less_or_equal": {
+                "node_type": "split",
+                "node_id": 43,
+                "split_feature": "cast_count",
+                "split_threshold": 1.5,
+                "if_greater": {
+                    "node_type": "leaf",
+                    "node_id": 44,
+                    "prediction": "dislike"
+                },
+                "if_less_or_equal": {
+                    "node_type": "leaf",
+                    "node_id": 45,
+                    "prediction": "dislike"
+                }
+            }
+        },
+        "if_less_or_equal": {
+            "node_type": "split",
+            "node_id": 46,
+            "split_feature": "numVotes",
+            "split_threshold": 5000,
+            "if_greater": {
+                "node_type": "split",
+                "node_id": 47,
+                "split_feature": "cast_count",
+                "split_threshold": 1.5,
+                "if_greater": {
+                    "node_type": "leaf",
+                    "node_id": 48,
+                    "prediction": "dislike"
+                },
+                "if_less_or_equal": {
+                    "node_type": "leaf",
+                    "node_id": 49,
+                    "prediction": "hate"
+                }
+            },
+            "if_less_or_equal": {
+                "node_type": "split",
+                "node_id": 50,
+                "split_feature": "cast_count",
+                "split_threshold": 1.5,
+                "if_greater": {
+                    "node_type": "leaf",
+                    "node_id": 51,
+                    "prediction": "hate"
+                },
+                "if_less_or_equal": {
+                    "node_type": "leaf",
+                    "node_id": 52,
+                    "prediction": "hate"
+                }
+            }
+        }
+    }
+}

@@ -26,6 +26,10 @@
   z-index: 1000;
 }
 
+h2 {
+  color: gold;
+}
+
 /* quiz, profile and section containers */ 
 .quiz-box, #profile, section {
   background-color: #0f172a;

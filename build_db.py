@@ -17,10 +17,56 @@ os.makedirs(data_dir, exist_ok=True)
 conn = sqlite3.connect(db_path)
 cursor = conn.cursor()
 
+# OPTIMIZATION: Tell SQLite to use RAM for temp storage and turn off heavy journaling
+cursor.execute("PRAGMA temp_store = MEMORY;")
+cursor.execute("PRAGMA journal_mode = OFF;")
+
+# Custom insertion method for duplicate key handling
+def insert_ignore(pd_table, conn, keys, data_iter):
+    conn.executemany(
+        f"INSERT OR IGNORE INTO {pd_table.name} ({', '.join(keys)}) VALUES ({', '.join(['?']*len(keys))})", 
+        data_iter
+    )
+
 # =====================================================================
 # PHASE 1: BUILD THE MOVIES TABLE (From title.basics.tsv)
 # =====================================================================
-print("\n📐 Step 2: Defining the 'movies' SQL Table structure...")
+print("\n📐 Step 2: Defining the 'rating' sql table structure")
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS ratings (
+    tconst TEXT PRIMARY KEY,
+    averageRating REAL,
+    numVotes INTEGER
+)
+""")
+conn.commit()
+
+print("⚡ Step 3: Streaming 'title.ratings.tsv.gz' into SQL in small chunks...")
+valid_tconsts = set()
+for chunk in pd.read_csv(ratings_tsv_path, sep='\t', chunksize=20000, low_memory=False):
+    chunk['numVotes'] = pd.to_numeric(chunk['numVotes'], errors='coerce').fillna(0)
+    chunk = chunk[chunk['numVotes'] >= 1000]
+
+    if chunk.empty:
+        continue 
+
+    valid_tconsts.update(chunk['tconst'].to_list())
+
+    # Using 'to_sql' with a method that tells SQLite to ignore duplicate keys on conflict
+    chunk.to_sql(
+        'ratings', 
+        conn, 
+        if_exists='append', 
+        index=False, 
+        method=insert_ignore
+    )
+
+print(f"✅ Found {len(valid_tconsts)} titles with at least 10,000 votes!")
+
+# =====================================================================
+# PHASE 2: BUILD THE RATINGS TABLE (From title.ratings.tsv)
+# =====================================================================
+print("\n📐 Step 4: Defining the 'movies' SQL Table structure...")
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS movies (
     tconst TEXT PRIMARY KEY,
@@ -36,59 +82,27 @@ CREATE TABLE IF NOT EXISTS movies (
 """)
 conn.commit()
 
-print("⚡ Step 3: Streaming 'title.basics.tsv.gz' into SQL in small chunks...")
+print("⚡ Step 5: Streaming 'title.basicss.tsv.gz' into SQL...")
 for chunk in pd.read_csv(basics_tsv_path, sep='\t', chunksize=20000, low_memory=False):
+    # Doing the same 'INSERT OR IGNORE' trick for the ratings data
     valid_types = ['movie', 'tvSeries', 'tvMiniSeries']
-    chunk = chunk[chunk['titleType'].isin(valid_types)]
-    
-    # Using 'to_sql' with a method that tells SQLite to ignore duplicate keys on conflict
+    chunk = chunk[(chunk['titleType'].isin(valid_types)) & (chunk['tconst'].isin(valid_tconsts))] 
+
+    if chunk.empty:
+        continue 
+
     chunk.to_sql(
         'movies', 
         conn, 
         if_exists='append', 
         index=False, 
-        method=lambda pd_table, conn, keys, data_iter: conn.executemany(
-            f"INSERT OR IGNORE INTO {pd_table.name} ({', '.join(keys)}) VALUES ({', '.join(['?']*len(keys))})", 
-            data_iter
-        )
-    )
-
-# =====================================================================
-# PHASE 2: BUILD THE RATINGS TABLE (From title.ratings.tsv)
-# =====================================================================
-print("\n📐 Step 4: Defining the 'ratings' SQL Table structure...")
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS ratings (
-    tconst TEXT PRIMARY KEY,
-    averageRating REAL,
-    numVotes INTEGER
-)
-""")
-conn.commit()
-
-print("⚡ Step 5: Streaming 'title.ratings.tsv.gz' into SQL...")
-for chunk in pd.read_csv(ratings_tsv_path, sep='\t', chunksize=20000, low_memory=False):
-    # Doing the same 'INSERT OR IGNORE' trick for the ratings data
-    chunk.to_sql(
-        'ratings', 
-        conn, 
-        if_exists='append', 
-        index=False, 
-        method=lambda pd_table, conn, keys, data_iter: conn.executemany(
-            f"INSERT OR IGNORE INTO {pd_table.name} ({', '.join(keys)}) VALUES ({', '.join(['?']*len(keys))})", 
-            data_iter
-        )
+        method=insert_ignore
     )
 
 # =====================================================================
 # PHASE 3: BUILD THE PRINCIPALS TABLE (From title.principals.tsv.gz)
 # =====================================================================
 print("\n📐 Step 6: Defining the 'principals' SQL Table structure...")
-
-# OPTIMIZATION: Tell SQLite to use RAM for temp storage and turn off heavy journaling
-cursor.execute("PRAGMA temp_store = MEMORY;")
-cursor.execute("PRAGMA journal_mode = OFF;")
-
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS principals (
     tconst TEXT,
@@ -107,7 +121,10 @@ count = 0
 for chunk in pd.read_csv(principals_tsv_path, sep='\t', chunksize=50000, low_memory=False):
     # Keep only rows where the category is an actor or actress
     valid_categories = ['actor', 'actress']
-    chunk = chunk[chunk['category'].isin(valid_categories)]
+    chunk = chunk[chunk['category'].isin(valid_categories) & (chunk['tconst'].isin(valid_tconsts))]
+
+    if chunk.empty:
+        continue 
     
     # Append the filtered chunk directly into your SQLite database
     chunk.to_sql('principals', conn, if_exists='append', index=False)

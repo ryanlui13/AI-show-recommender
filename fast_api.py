@@ -1,5 +1,8 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
 from pydantic import BaseModel 
 from typing import List
 import pandas as pd
@@ -18,6 +21,15 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# 1. Mount your CSS and JS folder so browser can load them
+app.mount("/frontend", StaticFiles(directory="frontend"), name="frontend")
+
+# 2. Serve index.html when someone visits the root URL "/"
+@app.get("/")
+def read_root():
+    return FileResponse("frontend/index.html")
+
 
 #read the data from the 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -234,11 +246,6 @@ def get_summary(user_name: str, user_age: int, min_show_rating: float, top_count
         "Top Shows Watched": len(current_user.previous_love_shows),
         "Most liked genres": top_genres
     }
-
-#path route. read from the path
-@app.get("/")
-def root():
-    return {"message": "Welcome to AI show recommender API. Go to /shows to see show data"}
 
 #json user data
 @app.post("/user/profile")

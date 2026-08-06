@@ -1,0 +1,88 @@
+:root {
+  /* Modern Ravenclaw Palette */
+  --bg-main: #0B0E14;          /* Deepest Midnight Navy */
+  --bg-card: #151A24;          /* Dark Slate Surface */
+  --primary-accent: #3B82F6;   /* Electric Sapphire Blue */
+  --purple-accent: #8B5CF6;    /* Vibrant Magic Purple */
+  --border-color: #262F40;     /* Subtle Navy Border */
+  --text-main: #F1F5F9;        /* Crisp Bright White */
+  --text-muted: #94A3B8;       /* Soft Muted Gray */
+}
+
+.hideen-modal {
+  display: none !important;
+}
+
+.show-modal {
+  display: flex !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+h2 {
+  color: gold;
+}
+
+/* quiz, profile and section containers */ 
+.quiz-box, #profile, section {
+  background-color: #0f172a;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow-y: auto;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  color: whitesmoke;
+}
+
+/* buttons */ 
+#submit-quiz-btn, #createAccount, #signIn {
+  background: linear-gradient(135deg, var(--primary-accent), var(--purple-accent));
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+#submit-quiz-btn:hover, #createAccount:hover, #signIn:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.4);
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #1E2638;
+  color: var(--purple-accent);
+  border-bottom: 2px solid var(--border-color);
+  padding: 10px;
+}
+
+td {
+  border-bottom: 1px solid var(--border-color);
+  padding: 10px;
+  color: var(--text-main);
+}
+
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  margin: 0;
+  padding: 24px;    
+}

@@ -432,7 +432,7 @@ if __name__ == "__main__":
         FROM movies m
         INNER JOIN ratings r ON m.tconst = r.tconst
         LEFT JOIN principals p on m.tconst = p.tconst AND (p.category = 'actor' OR p.category = 'actress')
-        WHERE r.numVotes >= 5000
+        WHERE r.numVotes >= 10000
         GROUP BY m.tconst;
     """
     

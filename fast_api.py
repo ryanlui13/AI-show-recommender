@@ -22,14 +22,18 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# 1. Mount your CSS and JS folder so browser can load them
-app.mount("/frontend", StaticFiles(directory="frontend"), name="frontend")
-
 # 2. Serve index.html when someone visits the root URL "/"
 @app.get("/")
 def read_root():
-    return FileResponse("frontend/index.html")
+    return FileResponse("index.html")
 
+@app.get("/index.css")
+def read_css():
+    return FileResponse("index.css")
+
+@app.get("/quizAnswers.js")
+def read_js():
+    return FileResponse("quizAnswers.js")
 
 #read the data from the 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -377,6 +381,8 @@ def check_show_tier(request: ShowEvaluationRequest):
         "What was considered in this decision": show_features
     }
 
+app.mount("/", StaticFiles(directory=".", html=True), name="static")
+
 if __name__ == "__main__":
     genre_list = get_genres()
     for genre in genre_list["genres"]:
@@ -384,3 +390,4 @@ if __name__ == "__main__":
 
     
     print("------------------------------------\n")
+

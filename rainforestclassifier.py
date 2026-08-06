@@ -22,7 +22,7 @@ query = """
     FROM movies m
     INNER JOIN ratings r ON m.tconst = r.tconst
     INNER JOIN principals p on m.tconst = p.tconst 
-    WHERE r.numVotes >= 5000
+    WHERE r.numVotes >= 10000
     GROUP BY m.tconst;
 """
 

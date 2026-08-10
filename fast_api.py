@@ -37,7 +37,7 @@ def read_js():
 
 #read the data from the 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-db_path = os.path.join(BASE_DIR, 'data', 'recommender.db')
+db_path = os.path.join(BASE_DIR, 'recommender.db')
 conn = sqlite3.connect(db_path)
 
 query = """

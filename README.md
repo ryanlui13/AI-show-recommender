@@ -30,8 +30,7 @@ Users can log their favorite genres, previous shows they loved/liked, and cast p
 ## 📁 Project Structure
 
 ```text
-├── data/
-│   └── recommender.db           # SQLite database containing movies, ratings, and cast info
+├── recommender.db           # SQLite database containing movies, ratings, and cast info
 ├── index_2.html                 # Main frontend UI
 ├── index.css                    # UI styles and modal rules
 ├── quizAnswers_3.js             # DOM manipulation, quiz submit logic, API integration

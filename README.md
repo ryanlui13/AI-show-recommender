@@ -21,11 +21,30 @@ Users can log their favorite genres, previous shows they loved/liked, and cast p
 ## 🛠️ Tech Stack
 
 * **Frontend:** HTML5, CSS3, JavaScript (ES6+ / Fetch API)
-* **Backend:** Python 3.9+, FastAPI, Uvicorn
+* **Backend:** Python 3.9+ (https://www.python.org/downloads/), FastAPI, Uvicorn
 * **Data Processing & Database:** Pandas, SQLite, `heapq`
 * **Machine Learning / Logic:** Custom Decision Tree Classifier (`tree.json`)
 
 ---
+
+## Installation Steps
+1)Clone the repo: 
+```bash
+   git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+   cd your-repo-name
+```
+2)Activate virtual environment: 
+Inside the terminal, type
+a) macOS/Linux
+python3 -m venv venv
+source venv/bin/activate
+
+b)Windows
+python -m venv venv
+venv\Scripts\activate
+
+3)install dependencies:
+pip install -r requirements.txt
 
 ## 📁 Project Structure
 
@@ -38,3 +57,4 @@ Users can log their favorite genres, previous shows they loved/liked, and cast p
 ├── suggestion_generator.py      # Recommendation core logic and User/Show models
 ├── tree.json                    # Decision tree structure for show evaluation
 └── README.md                    # Project documentation
+

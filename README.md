@@ -34,7 +34,8 @@ Users can log their favorite genres, previous shows they loved/liked, and cast p
    cd your-repo-name
 ```
 2)Activate virtual environment: 
-Inside the terminal, type
+Inside the terminal, type, either:
+
 a) macOS/Linux
 python3 -m venv venv
 source venv/bin/activate

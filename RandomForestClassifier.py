@@ -64,7 +64,7 @@ def train_and_recommend(database):
 
     # 👈 FIXED: Added axis=1 to combine features side-by-side column-wise
     X = pd.concat([x_genres, x_cast, x_numeric], axis=1) 
-    y = ((database['averageRating'] >= 7.0) & (database['numVotes'] >= 5000)).astype(int)
+    y = ((database['averageRating'] >= 7.0) & (database['numVotes'] >= 10000)).astype(int)
 
     x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
